@@ -1,0 +1,46 @@
+### Get messageboards
+GET http://localhost:8080/messageboards
+
+
+### Add a messageboard
+POST http://localhost:8080/messageboards
+Content-Type: application/json
+
+{
+  "name": "Interesting discussion here"
+}
+
+
+### List Messages
+GET http://localhost:8080/messageboards/1/messages
+
+
+### Add a message
+POST http://localhost:8080/messageboards/1/messages
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "text": "testing a message here"
+}
+
+
+### Update a message
+PATCH http://localhost:8080/messageboards/1/messages/3
+Content-Type: application/json
+
+{
+  "tex2t": "updated message"
+}
+
+
+### Update a message with bad words
+PATCH http://localhost:8080/messageboards/1/messages/3
+Content-Type: application/json
+
+{
+  "text": "adidas"
+}
+
+### Delete a message
+DELETE http://localhost:8080/messageboards/1/messages/2
