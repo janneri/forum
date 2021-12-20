@@ -1,7 +1,7 @@
 package com.example.forum.testdata;
 
-import com.example.forum.command.InsertMessage;
-import com.example.forum.command.InsertMessageboard;
+import com.example.forum.command.InsertMessageBuilder;
+import com.example.forum.command.InsertMessageboardBuilder;
 
 public final class TestdataBuilder {
 
@@ -9,12 +9,16 @@ public final class TestdataBuilder {
     public static int userId = 1;
 
     // a messageboard with default data
-    public static InsertMessageboard.Builder insertMessageboard = InsertMessageboard.builder()
-            .name("A Messageboard");
+    public static InsertMessageboardBuilder insertMessageboard() {
+        return InsertMessageboardBuilder.builder()
+                .name("A Messageboard");
+    }
 
     // a message with default data
-    public static InsertMessage.Builder insertMessage = InsertMessage.builder()
-            .userId(userId)
-            .text("Some message!");
+    public static InsertMessageBuilder insertMessage() {
+        return InsertMessageBuilder.builder()
+                .userId(userId)
+                .text("Some message!");
+    }
 
 }

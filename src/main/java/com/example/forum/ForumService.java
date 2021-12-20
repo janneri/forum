@@ -16,8 +16,8 @@ import java.util.List;
 
 @Service
 public class ForumService {
-    private ForumDao forumDao;
-    private MessageModerator messageModerator;
+    private final ForumDao forumDao;
+    private final MessageModerator messageModerator;
 
     public ForumService(ForumDao forumDao, MessageModerator messageModerator) {
         this.forumDao = forumDao;
@@ -37,7 +37,7 @@ public class ForumService {
     @AuditLog
     @Transactional
     public Message insertMessage(MessageboardId messageboardId, InsertMessage insertMessage) {
-        messageModerator.check(insertMessage.text);
+        messageModerator.check(insertMessage.text());
         return forumDao.insertMessage(messageboardId, insertMessage);
     }
 
@@ -56,7 +56,7 @@ public class ForumService {
     @AuditLog
     @Transactional
     public int editMessage(MessageboardId messageboardId, MessageId messageId, EditMessage editMessage) {
-        messageModerator.check(editMessage.text);
+        messageModerator.check(editMessage.text());
         return forumDao.editMessage(messageboardId, messageId, editMessage);
     }
 }

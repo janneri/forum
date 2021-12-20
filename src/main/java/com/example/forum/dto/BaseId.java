@@ -4,11 +4,16 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.util.Objects;
 
-public class Id {
-    @JsonValue
-    public final int intValue;
+/** Parent class for all Ids */
+public class BaseId {
+    private final int intValue;
 
-    public Id(int intValue) {
+    @JsonValue
+    public int intValue() {
+        return intValue;
+    }
+
+    public BaseId(int intValue) {
         this.intValue = intValue;
     }
 
@@ -21,7 +26,7 @@ public class Id {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Id messageId = (Id) o;
+        BaseId messageId = (BaseId) o;
         return intValue == messageId.intValue;
     }
 

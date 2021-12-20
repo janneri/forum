@@ -21,10 +21,19 @@ import java.util.concurrent.atomic.AtomicLong;
 @Component
 public class AuditLoggerAspect {
     private static final Logger LOG = LoggerFactory.getLogger(AuditLoggerAspect.class);
-    private final ObjectMapper objectMapper = new ObjectMapper();
-    private AtomicLong txIdSequence = new AtomicLong();
+    private final ObjectMapper objectMapper;
+    private final AtomicLong txIdSequence;
     @Value("${auditlog.log.all.parameters}") private boolean logParameters;
     @Value("${auditlog.log.return.values}") private boolean logReturnValues;
+
+    public AuditLoggerAspect(ObjectMapper objectMapper,
+                             @Value("${auditlog.log.all.parameters}") boolean logParameters,
+                             @Value("${auditlog.log.return.values}") boolean logReturnValues) {
+        this.objectMapper = objectMapper;
+        this.logParameters = logParameters;
+        this.logReturnValues = logReturnValues;
+        txIdSequence = new AtomicLong();
+    }
 
     @Around("@annotation(auditLog)")
     public Object logMethods(ProceedingJoinPoint jp, AuditLog auditLog) throws Throwable {

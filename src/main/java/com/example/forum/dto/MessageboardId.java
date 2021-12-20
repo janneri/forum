@@ -1,8 +1,6 @@
 package com.example.forum.dto;
 
-import java.util.Objects;
-
-public final class MessageboardId extends Id {
+public final class MessageboardId extends BaseId {
     public MessageboardId(int intValue) {
         super(intValue);
     }
@@ -12,11 +10,10 @@ public final class MessageboardId extends Id {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MessageboardId that = (MessageboardId) o;
-        return intValue == that.intValue;
+        return intValue() == that.intValue();
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(intValue);
+    public static MessageboardId valueOf(String valueStr) {
+        return new MessageboardId(Integer.parseInt(valueStr));
     }
 }

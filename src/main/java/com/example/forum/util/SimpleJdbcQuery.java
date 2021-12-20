@@ -1,6 +1,6 @@
 package com.example.forum.util;
 
-import com.example.forum.dto.Id;
+import com.example.forum.dto.BaseId;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class SimpleJdbcQuery {
-    private JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
     private String queryStr;
     private Object[] params;
 
@@ -47,8 +47,8 @@ public class SimpleJdbcQuery {
     private Object[] applyUserTypes(Object... params) {
         return Arrays.stream(params)
                 .map(param -> {
-                    if (param != null && Id.class.isAssignableFrom(param.getClass())) {
-                        return ((Id) param).intValue;
+                    if (param != null && BaseId.class.isAssignableFrom(param.getClass())) {
+                        return ((BaseId) param).intValue();
                     }
                     return param;
                 }).

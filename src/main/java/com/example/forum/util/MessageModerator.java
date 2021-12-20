@@ -11,11 +11,11 @@ public final class MessageModerator {
 
     public void check(String message) {
         if (message != null && containsBadWords(message)) {
-            throw new MessageContainsBadWordsException();
-        };
+            throw new MessageContainsBadWordsException(message);
+        }
     }
 
     private boolean containsBadWords(String message) {
-        return BAD_WORDS.stream().anyMatch(badWord -> message.contains(badWord));
+        return BAD_WORDS.stream().anyMatch(message::contains);
     }
 }

@@ -30,11 +30,11 @@ PATCH http://localhost:8080/messageboards/1/messages/3
 Content-Type: application/json
 
 {
-  "tex2t": "updated message"
+  "text": "updated message 2"
 }
 
 
-### Update a message with bad words
+### Update a message with bad words (should fail)
 PATCH http://localhost:8080/messageboards/1/messages/3
 Content-Type: application/json
 

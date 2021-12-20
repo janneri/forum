@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.5</version>
+		<version>2.6.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
@@ -15,8 +15,7 @@
 	<description>Demo project for Spring Boot - A simple Forum backend</description>
 
 	<properties>
-		<java.version>16</java.version>
-		<querydsl.version>4.4.0</querydsl.version>
+		<java.version>17</java.version>
 		<h2.version>1.4.200</h2.version>
 	</properties>
 
@@ -39,7 +38,6 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>6.5.5</version>
 		</dependency>
 
 		<dependency>
@@ -52,9 +50,15 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.9.5</version>
+			<version>1.9.7</version>
 		</dependency>
-	</dependencies>
+		<dependency>
+			<groupId>io.soabase.record-builder</groupId>
+			<artifactId>record-builder-processor</artifactId>
+			<version>29</version>
+			<scope>provided</scope>
+		</dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

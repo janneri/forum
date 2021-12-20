@@ -3,7 +3,7 @@ package com.example.forum.exception;
 import org.springframework.http.HttpStatus;
 
 public class MessageContainsBadWordsException extends ForumException {
-    public MessageContainsBadWordsException() {
-        super("Message contains bad words!", HttpStatus.BAD_REQUEST);
+    public MessageContainsBadWordsException(String message) {
+        super("Message contains bad words! Message=" + message, HttpStatus.BAD_REQUEST);
     }
 }

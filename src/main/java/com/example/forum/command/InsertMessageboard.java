@@ -1,34 +1,14 @@
 package com.example.forum.command;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import io.soabase.recordbuilder.core.RecordBuilder;
 
-@JsonDeserialize(builder = InsertMessageboard.Builder.class)
-public final class InsertMessageboard {
-    public final String name;
+import static com.example.forum.util.InputValidationUtil.requireTextLength;
 
-    private InsertMessageboard(Builder builder) {
-        name = builder.name;
+@RecordBuilder
+public record InsertMessageboard(String name) {
+
+    public InsertMessageboard {
+        requireTextLength(name, 3);
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    @JsonPOJOBuilder(withPrefix = "")
-    public static class Builder {
-        private String name;
-
-        private Builder() {
-        }
-
-        public Builder name(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public InsertMessageboard build() {
-            return new InsertMessageboard(this);
-        }
-    }
 }
